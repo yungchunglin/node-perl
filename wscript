@@ -13,10 +13,10 @@ def configure(conf):
     conf.env.append_unique('CXXFLAGS',Utils.cmd_output('perl -MExtUtils::Embed -e ccopts').split())
     conf.env.append_unique('CXXFLAGS',['-Duseithreads'])
     conf.env.append_unique('LINKFLAGS',Utils.cmd_output('perl -MExtUtils::Embed -e ldopts').split())
-    Utils.exec_command('perl -MExtUtils::Embed -e xsinit -- -o src/perlxsi.c')
+    Utils.exec_command('perl -MExtUtils::Embed -e xsinit -- -o src/perlxsi.C')
 
 def build(bld):
     obj = bld.new_task_gen('cxx', 'shlib', 'node_addon')
     obj.target = 'perl'
-    obj.source = './src/perlxsi.c ./src/perl_bindings.cc'
+    obj.source = './src/perlxsi.C ./src/perl_bindings.cc'
 
